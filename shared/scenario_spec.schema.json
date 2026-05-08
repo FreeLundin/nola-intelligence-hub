@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NOLA Intelligence Hub - Scenario Spec",
+  "type": "object",
+  "required": ["scenario_id", "center", "layers", "simulation"],
+  "additionalProperties": false,
+  "properties": {
+    "scenario_id": { "type": "string" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "center": {
+      "type": "array",
+      "description": "Longitude/Latitude pair [lng, lat]",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": [{ "type": "number" }, { "type": "number" }]
+    },
+    "zoom": { "type": "number" },
+    "bounds": {
+      "type": "array",
+      "description": "[minLng,minLat,maxLng,maxLat]",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": [
+        { "type": "number" },
+        { "type": "number" },
+        { "type": "number" },
+        { "type": "number" }
+      ]
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["geojson", "vector_tile", "raster", "mvt"] },
+          "source": { "type": "string" },
+          "tileUrlTemplate": { "type": "string" },
+          "initialVisibility": { "type": "boolean" },
+          "order": { "type": "integer" },
+          "telemetryBinding": {
+            "type": ["object", "null"],
+            "properties": {
+              "idField": { "type": "string" },
+              "telemetrySource": { "type": "string" }
+            }
+          },
+          "style": { "type": "object" },
+          "timeSeries": { "type": "object" }
+        }
+      }
+    },
+    "simulation": {
+      "type": "object",
+      "required": ["timeUnits", "durationHours"],
+      "properties": {
+        "timeUnits": { "type": "string" },
+        "durationHours": { "type": "number" },
+        "interpolation": { "type": "string" },
+        "agentBindings": { "type": "object" }
+      }
+    },
+    "metadata": { "type": "object" }
+  }
+}

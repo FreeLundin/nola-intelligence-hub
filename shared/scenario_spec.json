@@ -1,0 +1,68 @@
+{
+  "scenario_id": "Scenario_01_100yr",
+  "title": "100yr Storm - Uptown Focus",
+  "description": "Demo scenario: 100-year storm, Uptown New Orleans focus.",
+  "center": [-90.097, 29.946],
+  "zoom": 13,
+  "bounds": [-90.12, 29.92, -90.07, 29.97],
+  "layers": [
+    {
+      "id": "basemap",
+      "name": "Mapbox Streets (Dark)",
+      "type": "raster",
+      "provider": "mapbox",
+      "style": "mapbox://styles/mapbox/dark-v10",
+      "initialVisibility": true,
+      "order": 0
+    },
+    {
+      "id": "drainage_network",
+      "name": "Drainage Network",
+      "type": "geojson",
+      "source": "/data/normalized/drainage.geojson",
+      "initialVisibility": true,
+      "order": 1,
+      "style": { "stroke": "#00FFFF", "width": 2 }
+    },
+    {
+      "id": "pump_stations",
+      "name": "Pump Stations",
+      "type": "geojson",
+      "source": "/data/normalized/pumps.geojson",
+      "initialVisibility": true,
+      "order": 2,
+      "telemetryBinding": { "idField": "pump_id", "telemetrySource": "ws://localhost:8000/ws/pumps" },
+      "style": { "fill": "#FF4D4F", "radius": 6 }
+    },
+    {
+      "id": "flood_tiles",
+      "name": "Flood Vector Tiles",
+      "type": "vector_tile",
+      "tileUrlTemplate": "https://tiles.example.com/{z}/{x}/{y}.pbf?scenario=Scenario_01_100yr",
+      "initialVisibility": true,
+      "order": 3,
+      "timeSeries": {
+        "start": "2026-05-08T00:00:00Z",
+        "end": "2026-05-09T00:00:00Z",
+        "stepHours": 1,
+        "tilePrefix": "/data/prefetched/tiles/scenario_01"
+      }
+    }
+  ],
+  "simulation": {
+    "timeUnits": "hours",
+    "durationHours": 24,
+    "interpolation": "linear",
+    "agentBindings": {
+      "whatIf": {
+        "endpoint": "/simulation/trigger",
+        "supportedActions": ["fail_pump", "increase_inflow", "diverter_open"]
+      }
+    }
+  },
+  "metadata": {
+    "createdBy": "NIH_team",
+    "createdAt": "2026-05-08T12:00:00Z",
+    "version": "1.0.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"pump_id": "P-101", "name": "Pump Station 101", "status": "normal"},
+      "geometry": {"type": "Point", "coordinates": [-90.100, 29.948]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"pump_id": "P-102", "name": "Pump Station 102", "status": "normal"},
+      "geometry": {"type": "Point", "coordinates": [-90.105, 29.945]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"pump_id": "P-103", "name": "Pump Station 103", "status": "warning"},
+      "geometry": {"type": "Point", "coordinates": [-90.098, 29.952]}
+    }
+  ]
+}

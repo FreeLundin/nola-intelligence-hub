@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic
+geopandas
+shapely
+fiona
+pyproj
+websockets
+python-dotenv

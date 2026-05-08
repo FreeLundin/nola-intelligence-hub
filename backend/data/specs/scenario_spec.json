@@ -1,0 +1,47 @@
+{
+  "scenario_id": "Scenario_01_100yr",
+  "title": "100yr Storm - Uptown Focus",
+  "description": "Demo scenario: 100-year storm, Uptown New Orleans focus.",
+  "center": [-90.097, 29.946],
+  "zoom": 13,
+  "bounds": [-90.12, 29.92, -90.07, 29.97],
+  "layers": [
+    {
+      "id": "drainage_network",
+      "name": "Drainage Network",
+      "type": "geojson",
+      "source": "/layers/drainage_network",
+      "initialVisibility": true,
+      "order": 1,
+      "style": {"stroke": "#00FFFF", "width": 2}
+    },
+    {
+      "id": "pump_stations",
+      "name": "Pump Stations",
+      "type": "geojson",
+      "source": "/layers/pump_stations",
+      "initialVisibility": true,
+      "order": 2,
+      "telemetryBinding": {"idField": "pump_id", "telemetrySource": "/telemetry/pumps"},
+      "style": {"fill": "#FF4D4F", "radius": 6}
+    },
+    {
+      "id": "flood_extent",
+      "name": "Flood Extent",
+      "type": "geojson",
+      "source": "/layers/flood_extent",
+      "initialVisibility": true,
+      "order": 3,
+      "timeSeries": {"start": 0, "end": 24, "stepHours": 1}
+    }
+  ],
+  "simulation": {
+    "timeUnits": "hours",
+    "durationHours": 24,
+    "interpolation": "linear",
+    "agentBindings": {
+      "whatIf": {"endpoint": "/simulation/trigger", "supportedActions": ["fail_pump", "warn_pump"]}
+    }
+  },
+  "metadata": {"createdBy": "NIH_team", "createdAt": "2026-05-08T12:00:00Z", "version": "1.0.0"}
+}

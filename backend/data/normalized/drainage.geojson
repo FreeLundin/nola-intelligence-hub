@@ -1,0 +1,29 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"id": "D-1", "name": "Drain Line 1"},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-90.110, 29.954],
+          [-90.102, 29.948],
+          [-90.095, 29.942]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"id": "D-2", "name": "Drain Line 2"},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-90.108, 29.948],
+          [-90.100, 29.945],
+          [-90.096, 29.940]
+        ]
+      }
+    }
+  ]
+}
